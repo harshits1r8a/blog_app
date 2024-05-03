@@ -1,5 +1,6 @@
-import conf from "../conf/conf";
+import conf from "../conf/conf.js";
 import { Client, Account, ID } from "appwrite";
+
 
 export class AuthSevice {
     client = new Client();
@@ -23,7 +24,7 @@ export class AuthSevice {
                 return userAccount;
             }
         } catch (error) {
-            console.error("Appwrite error in CREATE_ACCOUNT :",error)
+            console.error("Appwrite service :: createAccount :: error",error)
         }
     }
 
@@ -32,7 +33,7 @@ export class AuthSevice {
         try {
             return await this.account.createEmailPasswordSession(email, password)
         } catch (error) {
-            console.error("Appwrite error in LOGIN :",error)
+            console.error("Appwrite service :: login :: error",error)
         }
     }
 
@@ -40,7 +41,7 @@ export class AuthSevice {
         try {
             return await this.account.get();
         } catch (error) {
-            console.error("Appwrite error in GRT_CURRENT_USER :",error)
+            console.error("Appwrite service :: getCurrentUser :: error",error)
         }
         return null;
     }
@@ -50,10 +51,10 @@ export class AuthSevice {
         try {
             return this.account.deleteSessions()
         } catch (error) {
-            console.error("Appwrite error in LOGOUT :",error)
+            console.error("Appwrite service :: logout :: error",error)
         }
     }
 }
 
 const authSevice = new AuthSevice();
-export default authSevice;
+export default  authSevice;
